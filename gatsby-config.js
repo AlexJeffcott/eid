@@ -6,10 +6,23 @@
 
 module.exports = {
   /* Your site config here */
+  /* gatsby-plugin-offline must go after gatsby-plugin-manifest */
   plugins: [
     `gatsby-plugin-sass`,
     `gatsby-plugin-sitemap`,
     `gatsby-plugin-next-seo`,
+    {
+      resolve: `gatsby-plugin-manifest`,
+      options: {
+        name: `GatsbyJS`,
+        short_name: `GatsbyJS`,
+        start_url: `/`,
+        background_color: `#f7f0eb`,
+        theme_color: `#a2466c`,
+        display: `standalone`,
+      },
+    },
+    `gatsby-plugin-offline`,
     {
       resolve: `gatsby-plugin-sharp`,
       options: {
