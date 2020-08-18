@@ -1,8 +1,4 @@
-/**
- * Configure your Gatsby site with this file.
- *
- * See: https://www.gatsbyjs.org/docs/gatsby-config/
- */
+require('dotenv').config();
 
 module.exports = {
   /* Your site config here */
@@ -23,6 +19,14 @@ module.exports = {
       },
     },
     `gatsby-plugin-offline`,
+    {
+      resolve: `gatsby-source-graphql`,
+      options: {
+        typeName: `GraphCMS`,
+        fieldName: `gcms`,
+        url: process.env.GRAPHCMS_URL,
+      },
+    },
     {
       resolve: `gatsby-plugin-sharp`,
       options: {

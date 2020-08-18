@@ -1,0 +1,30 @@
+a {
+    text-decoration: none;
+}
+
+.product-wrapper {
+    text-align: center;
+    padding: 0.3em;
+    margin: 0.5em;
+    background-color: whitesmoke;
+    color: black;
+    cursor: pointer;
+}
+
+.product-wrapper:hover {
+    background-color: ghostwhite;
+}
+
+.product-wrapper h2 {
+    padding: 0;
+    margin: 0;
+}
+
+.product-wrapper img {
+    width: 5em;
+}
+
+.product-wrapper p {
+    padding: 0;
+    margin: 0;
+}
