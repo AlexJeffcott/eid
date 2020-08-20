@@ -1,37 +1,58 @@
 import React from 'react';
-import { graphql } from 'gatsby';
-import './ProductPage.css'
-import { Layout } from "../components"
+import { graphql } from "gatsby";
 
-const ProductPage = ({
-  data: {
-    gcms: { product },
-  },
-}) => (
-  <Layout title={`product | ${product.name}`} description={`${product.name} | ${product.description}`}>
-    <h1>{product.name}</h1>
-    <div>{product.images.map(({url, id}) => (
-      <img key={id} alt={id} src={url}/>
-        ))}
-    </div>
-    <p>{product.description}</p>
-    <p>
-      {new Intl.NumberFormat("de-DE", {
-        style: "currency",
-        currency: "EUR"
-      }).format(product.price)}
-    </p>
-  </Layout>
-);
+import { Layout, LocalisedPrice } from "../components";
+import './ProductPage.css';
 
-export const pageQuery = graphql`
+export default function ProductPage ({ data: { gcms } }) {
+  const {product} = gcms || {}
+  if (!product.h1) return <div>not loaded</div>
+
+  const localisedPrice = LocalisedPrice('en-GB', product.price.price)
+  return (
+    <Layout title={`product | ${product.h1}`} description={`${product.h1} | ${product.h2}`}>
+      <h1>{product.h1}</h1>
+      <div>{product.mediaAssets.map(({url, id}) => (
+        <img key={id} alt={id} src={url}/>
+      ))}
+      </div>
+      <p>{product.h2}</p>
+      <p><b>Care Instructions: </b>{product.productType.careInstructions.careInstructions}</p>
+      <p><b>Shipping: </b>{product.productType.shipping.shipping}</p>
+      <p>
+        {localisedPrice}
+      </p>
+    </Layout>
+  );
+}
+
+export const pageQuery =  graphql`
     query ProductPageQuery($id: ID!) {
         gcms {
             product(where: { id: $id }) {
-                name
-                description
-                price
-                images {
+                code
+                h1
+                h2
+                slug
+                price {
+                    price
+                }
+                range
+                collection
+                productType {
+                    careInstructions {
+                        careInstructions
+                    }
+                    shipping {
+                        shipping
+                    }
+                    dimensions
+                    prodType
+                    material
+                }
+                shape
+                tags
+                mediaAssets {
                     id
                     url
                 }
@@ -39,5 +60,3 @@ export const pageQuery = graphql`
         }
     }
 `;
-
-export default ProductPage;
