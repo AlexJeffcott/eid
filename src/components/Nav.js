@@ -1,20 +1,26 @@
 import React from "react"
 import { Link } from "gatsby"
-import { OutboundLink } from "./"
-import './Nav.css'
-// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-// import { faReact } from "@fortawesome/free-brands-svg-icons"
-// <FontAwesomeIcon icon={faReact} />
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faBars, faTimes } from "@fortawesome/free-solid-svg-icons"
+import "./nav.css"
 
-export default function Nav() {
+export default function ResponsiveDrawer() {
+  const [isOpen, setIsOpen] = React.useState(false)
+  function handleToggle() {
+    setIsOpen(!isOpen)
+  }
+
   return (
-      <div className="navWrapper" >
+    <div className="nav">
+      {!isOpen && <FontAwesomeIcon icon={faBars} onClick={handleToggle} />}
+      {isOpen && (
+        <div className="sideNav">
+          <FontAwesomeIcon icon={faTimes} onClick={handleToggle} />
           <Link to="/">Home</Link>
           <Link to="/about">About</Link>
-          <Link to={`/products/`}>products</Link>
-          <OutboundLink href="https://www.gatsbyjs.org/packages/gatsby-plugin-google-analytics/">
-            Click here to find out about outboundlink
-          </OutboundLink>
-      </div>
+          <Link to={`/products/`}>Products</Link>
+        </div>
+      )}
+    </div>
   )
 }
