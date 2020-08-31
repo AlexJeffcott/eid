@@ -1,0 +1,12 @@
+.navWrapper {
+    margin-left: auto;
+    margin-right: auto;
+    padding: 1rem;
+    display: flex;
+
+}
+
+.navWrapper a {
+    flex-wrap: wrap;
+    margin: 1rem;
+}

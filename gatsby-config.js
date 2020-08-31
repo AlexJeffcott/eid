@@ -1,6 +1,7 @@
 require('dotenv').config();
 
 module.exports = {
+  /* here defining `gcms` as a fieldName is something for Gatsby and should match the graphql queries - you won't find it in the schema though!!!*/
   /* gatsby-plugin-offline must go after gatsby-plugin-manifest */
   plugins: [
     `gatsby-plugin-sass`,
