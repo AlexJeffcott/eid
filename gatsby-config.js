@@ -1,3 +1,6 @@
+require("ts-node").register({
+  files: true,
+})
 require("dotenv").config()
 
 module.exports = {
@@ -7,6 +10,7 @@ module.exports = {
     `gatsby-plugin-sass`,
     `gatsby-plugin-sitemap`,
     `gatsby-plugin-next-seo`,
+    `gatsby-plugin-typescript`,
     {
       resolve: `gatsby-plugin-manifest`,
       options: {

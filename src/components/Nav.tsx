@@ -2,10 +2,11 @@ import React from "react"
 import { Link } from "gatsby"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faBars, faTimes } from "@fortawesome/free-solid-svg-icons"
-import "./nav.css"
+import "./Nav.css"
 
-export default function ResponsiveDrawer() {
+const sideMenu = () => {
   const [isOpen, setIsOpen] = React.useState(false)
+
   function handleToggle() {
     setIsOpen(!isOpen)
   }
@@ -24,3 +25,5 @@ export default function ResponsiveDrawer() {
     </div>
   )
 }
+
+export default sideMenu

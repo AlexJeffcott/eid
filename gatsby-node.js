@@ -1,3 +1,6 @@
+require("ts-node").register({
+  files: true,
+})
 
 exports.createPages = async ({ graphql, actions: { createPage } }) => {
   const {
@@ -7,7 +10,7 @@ exports.createPages = async ({ graphql, actions: { createPage } }) => {
   } = await graphql(`
     {
       gcms {
-        homePage(where: {id: "ckeemt44808pl0152x9zb02ii"}) {
+        homePage(where: { id: "ckeemt44808pl0152x9zb02ii" }) {
           id
           title
           subHeading
@@ -17,7 +20,7 @@ exports.createPages = async ({ graphql, actions: { createPage } }) => {
             url
           }
         }
-        aboutPage(where: {id: "ckeg1zg6w0rwz01522h0hgiyg"}) {
+        aboutPage(where: { id: "ckeg1zg6w0rwz01522h0hgiyg" }) {
           id
           title
           subHeading
@@ -36,11 +39,11 @@ exports.createPages = async ({ graphql, actions: { createPage } }) => {
         }
       }
     }
-  `);
+  `)
 
   createPage({
     path: `/`,
-    component: require.resolve(`./src/templates/HomePage.js`),
+    component: require.resolve(`./src/templates/HomePage.tsx`),
     context: {
       id: homePage.id,
     },
@@ -48,7 +51,7 @@ exports.createPages = async ({ graphql, actions: { createPage } }) => {
   console.log(`!! aboutPage`, aboutPage)
   createPage({
     path: `/${aboutPage.slug}`,
-    component: require.resolve(`./src/templates/AboutPage.js`),
+    component: require.resolve(`./src/templates/AboutPage.tsx`),
     context: {
       id: aboutPage.id,
     },
@@ -56,16 +59,16 @@ exports.createPages = async ({ graphql, actions: { createPage } }) => {
 
   createPage({
     path: `/products`,
-    component: require.resolve(`./src/templates/ProductsPage.js`)
+    component: require.resolve(`./src/templates/ProductsPage.tsx`),
   })
 
   products.forEach(({ id, slug }) =>
     createPage({
       path: `/products/${slug}`,
-      component: require.resolve(`./src/templates/ProductPage.js`),
+      component: require.resolve(`./src/templates/ProductPage.tsx`),
       context: {
         id,
       },
     })
-  );
-};
+  )
+}
